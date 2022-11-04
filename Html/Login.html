@@ -17,13 +17,13 @@
             Account Login
         </p>
 
-        <form>
+        <form action="../Boundary/loginBoundary.php" method="POST">
             <div class="user-box">
-              <input type="text" id="username" placeholder="Username">
+              <input type="text" name="username" id="username" placeholder="Username" required>
               
             </div>
             <div class="user-box">
-              <input type="password" id="password" placeholder="Password">
+              <input type="password" name="password" id="password" placeholder="Password" required>
            
             </div>
 
@@ -42,17 +42,10 @@
 
             </div>
 
+            <input type="submit" class="button-28">
+
           
           </form>
-
-          <div class="submit">
-            <a href="AuthorLogin.html">
-                <button class="button-28">
-                    Login
-                </button>
-        </a>
-
-    </div>
 
     </div>
 </body>

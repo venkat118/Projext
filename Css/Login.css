@@ -67,8 +67,7 @@
 
   
 
-.submit{
-
+input [submit]{
     position: relative;
     margin-top: 5%;
 
