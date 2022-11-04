@@ -11,7 +11,8 @@
             include '../dbConnect.php';
             $username = $arrayLogin[0];
             $password = $arrayLogin[1];
-            $sql = "SELECT userName, role FROM useraccount WHERE userName = '$username' AND password = '$password'";
+            $role = $arrayLogin[2];
+            $sql = "SELECT userName, role FROM useraccount WHERE userName = '$username' AND password = '$password' AND role = '$role'";
             try{
                 $result = mysqli_query($conn , $sql);
                 if($result){
