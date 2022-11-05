@@ -19,6 +19,8 @@
                     header('Location: ../Html/ReviewerLogin.html');
                     break;
             }
+        }else{
+            header('Location: ../Html/Login.html');
         }
     }
     
