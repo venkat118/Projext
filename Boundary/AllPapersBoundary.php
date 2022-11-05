@@ -7,18 +7,18 @@
     <?php
         if($Allpapers){
     ?>
-    <table>
+    <table border="1px solid black">
         <th>Paper ID</th>
         <th>Paper Title</th>
         <th>Authors</th>
         <th>Reviewed By</th>
         <?php
-            while($row = $Allpapers -> fetch_assoc()){
+            foreach($Allpapers as $Paper){
                 echo "<tr>";
-                echo "<td>".$row['PaperID']."</td>";
-                echo "<td>".$row['Title']."</td>";
-                echo "<td>".$row['Author']."</td>";
-                echo "<td>".$row['reviewedBy']."</td>";
+                echo "<td>".$Paper[0]."</td>";
+                echo "<td>".$Paper[1]."</td>";
+                echo "<td>".$Paper[2]."</td>";
+                echo "<td>".$Paper[3]."</td>";
                 echo "</tr>";
             }
         ?>
