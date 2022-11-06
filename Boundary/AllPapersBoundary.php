@@ -15,10 +15,10 @@
         <form action="../Boundary/AllPapersBoundary.php" method="GET">
             <select name="status">
                 <option value="viewAll">View All</option>
-                <option value="Bidding" <?php if($_GET['status'] == "Bidding"){echo "selected";}?>>Bidding</option>
-                <option value="Reviewing"<?php if($_GET['status'] == "Reviewing"){echo "selected";}?>>Reviewing</option>
-                <option value="Pending Approval"<?php if($_GET['status'] == "Pending Approval"){echo "selected";}?>>Pending Approval</option>
-                <option value="Approved"<?php if($_GET['status'] == "Approved"){echo "selected";}?>>Approved</option>
+                <option value="Bidding" <?php if((isset($_GET['status'])) && ($_GET['status'] == "Bidding")){echo "selected";}?>>Bidding</option>
+                <option value="Reviewing"<?php if((isset($_GET['status'])) && ($_GET['status'] == "Reviewing")){echo "selected";}?>>Reviewing</option>
+                <option value="Pending Approval"<?php if((isset($_GET['status'])) && ($_GET['status'] == "Pending Approval")){echo "selected";}?>>Pending Approval</option>
+                <option value="Approved"<?php if((isset($_GET['status'])) && ($_GET['status'] == "Approved")){echo "selected";}?>>Approved</option>
             </select>
             <input type="submit" value = "Filter">
         </form>
