@@ -5,7 +5,7 @@
             $_SESSION["username"] = $arrayResult['userName'];
             $_SESSION["role"] = $arrayResult['role'];
 
-            switch ($_SESSION['role']){
+            switch ($_SESSION["role"]){
                 case "Admin":
                     header('Location: ../Html/AdminLogin.html');
                     break;
@@ -18,6 +18,8 @@
                 case "Reviewer":
                     header('Location: ../Html/ReviewerLogin.html');
                     break;
+                default:
+                    header('Location: ../Html/Login.html');
             }
         }else{
             header('Location: ../Html/Login.html');
