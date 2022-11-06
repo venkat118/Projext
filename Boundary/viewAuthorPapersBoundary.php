@@ -42,7 +42,7 @@
     <?php
         }
         else{
-            echo"<p>There are no available papers for viewing</p>";
+            echo"<p>You have no available " . $_GET['status'] ." papers for viewing</p>";
         }
     ?>
 </html>
