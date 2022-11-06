@@ -34,9 +34,14 @@
             }
         }
 
-        function retrieveAuthorPaper($username){
+        function retrieveAuthorPaper($username , $status){
             include'../dbConnect.php';
-            $sql = "SELECT * FROM Paper WHERE Author = (SELECT FullName FROM useraccount WHERE userName = '$username')";
+            if($status == "viewAll"){
+                $sql = "SELECT * FROM Paper WHERE Author = (SELECT FullName FROM useraccount WHERE userName = '$username')";
+            }
+            else{
+                $sql = "SELECT * FROM Paper WHERE Author = (SELECT FullName FROM useraccount WHERE userName = '$username') AND Status = '$status'";
+            }
             $resultArray = array();
             try{
                 $result = mysqli_query($conn , $sql);
