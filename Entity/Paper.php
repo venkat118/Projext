@@ -11,9 +11,14 @@
 
         }
 
-        function retrievePapers(){
+        function retrievePapers($status){
             include '../dbConnect.php';
-            $sql = 'SELECT * FROM Paper';
+            if($status == "viewAll"){
+                $sql = 'SELECT * FROM Paper';
+            }
+            else{
+                $sql = "SELECT * FROM Paper WHERE Status = '$status'";
+            }
             $resultArray = array();
             try{
                 $result = mysqli_query($conn , $sql);

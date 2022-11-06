@@ -3,9 +3,9 @@
     class doAllPapersController {
         public function __construct(){      
         }
-        function passPaperPara(){
+        function passPaperPara($status){
             $Paper = new Paper();
-            $resultRecords = $Paper -> retrievePapers();
+            $resultRecords = $Paper -> retrievePapers($status);
             return $resultRecords; 
         }
     }
