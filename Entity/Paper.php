@@ -56,5 +56,18 @@
                 return mysqli_error($conn);
             }
         }
+
+        function submitAuthorPaper($title, $author, $coAuthor, $coAuthor2, $fileName){
+            include'../dbConnect.php';
+            $sql = "INSERT INTO paper (Title, Author, CoAuthor, CoAuthor2, Status, FileName) VALUES 
+            ('$title', '$author', '$coAuthor', '$coAuthor2', 'Bidding','$fileName')";
+            try{
+                mysqli_query($conn , $sql);
+                mysqli_close($conn);
+                return "Paper successfully uploaded";
+            }catch(Exception $ex){
+                return mysqli_error($conn);
+            }
+        }
     }
 ?>

@@ -3,6 +3,7 @@
         if($arrayResult){
             session_start();
             $_SESSION["username"] = $arrayResult['userName'];
+            $_SESSION["fullname"] = $arrayResult['FullName'];
             $_SESSION["role"] = $arrayResult['role'];
 
             switch ($_SESSION["role"]){
