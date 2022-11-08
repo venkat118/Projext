@@ -16,7 +16,7 @@
         $submitPaperControl = new submitPaperController();
         $result = $submitPaperControl -> passSubmitPaperPara($title, $author, $coAuthor, $coAuthor2, $File);
         echo $result;
-        echo "<a href='../Html/viewAuthorPapersBoundary.php'>View all my papers</a>";
+        echo "<a href='../Boundary/viewAuthorPapersBoundary.php'>View all my papers</a>";
     }
     else{
 ?>

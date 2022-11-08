@@ -28,13 +28,21 @@
         <th>Paper Title</th>
         <th>Authors</th>
         <th>Reviewed By</th>
+        <th>Status</th>
+        <th>Download</th>
         <?php
             foreach($authorPapers as $Paper){
+                if(empty($Paper[3])){
+                    $Paper[3] = "Nil";
+                }
+                $download = "../Uploads/" . $Paper[5];
                 echo "<tr>";
                 echo "<td>".$Paper[0]."</td>";
                 echo "<td>".$Paper[1]."</td>";
                 echo "<td>".$Paper[2]."</td>";
                 echo "<td>".$Paper[3]."</td>";
+                echo "<td>".$Paper[4]."</td>";
+                echo "<td><a href='$download'download>Download</a></td>";
                 echo "</tr>";
             }
         ?>
