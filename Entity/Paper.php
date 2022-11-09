@@ -133,5 +133,16 @@
             return "Update is successful";
         }
 
+        function deletePaper($paperID){
+            include '../dbConnect.php';
+            $sql = "DELETE FROM paper WHERE PaperID = '$paperID'";
+            try{
+                mysqli_query($conn, $sql);
+                return "Delete is successful";
+            }catch(Exception $ex){
+                return "Delete is not successful";
+            }
+        }
+
     }
 ?>

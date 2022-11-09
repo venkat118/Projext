@@ -59,7 +59,7 @@
                 echo "<td>".$Paper[4]."</td>";
                 echo "<td><a href='$download'download>Download</a></td>";
                 echo "<td><a href='../Boundary/editPapersBoundary.php?paperTitle=$Paper[1]&paperID=$Paper[0]&author=$Paper[2]' id='edit'>Edit Paper</a></td>";
-                echo "<td><a href='../Boundary/deletePapersBoundary.php?paperTitle=$Paper[1]&paperID=$Paper[0]&author=$Paper[2]'>Delete Paper</a></td>";
+                echo "<td><a href='../Boundary/deletePapersBoundary.php?paperTitle=$Paper[1]&paperID=$Paper[0]'>Delete Paper</a></td>";
                 echo "</tr>";
             }
         ?>
@@ -67,7 +67,27 @@
     <?php
         }
         else{
-            echo"<p>You have no available " . $_GET['status'] ." papers for viewing</p>";
+            if(!empty($GET['status'])){
+                echo"<p>You have no available " . $_GET['status'] ." papers for viewing</p>";
+            }
+            else{
+                echo "<p>You have no available papers for viewing</p>";
+            }
+        }
+        switch($_SESSION['role']){
+            case "Admin":
+                echo "<a href='../Html/AdminLogin.html'>Back to Home</a>";
+                break;
+            case "Conference Chair":
+                echo "<a href='../Html/ConferenceLogin.html'>Back to Home</a>";
+                break;
+            case "Author":
+                echo "<a href='../Html/AuthorLogin.html'>Back to Home</a>";
+                break;
+            case "Reviewer":
+                echo "<a href='../Html/ReviewerLogin.html'>Back to Home</a>";
+                break;
         }
     ?>
+    
 </html>
