@@ -17,14 +17,12 @@
                 return "only word and pdf documents are allowed";
             }
 
-            if($uploadOk = 1){
-                if(move_uploaded_file($File["tmp_name"], $target_file)){
-                    $Paper = new Paper();
-                    $result = $Paper -> submitAuthorPaper($title , $author, $coAuthor, $coAuthor2, $File['name']);
-                    return $result;
-                }else{
-                    return "error in uploading";
-                }
+            if(move_uploaded_file($File["tmp_name"], $target_file)){
+                $Paper = new Paper();
+                $result = $Paper -> submitAuthorPaper($title , $author, $coAuthor, $coAuthor2, $File['name']);
+                return $result;
+            }else{
+                return "error in uploading";
             }
         }
 

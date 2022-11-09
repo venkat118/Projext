@@ -4,9 +4,9 @@
     class ViewAuthorPapersController{
         public function __construct(){
         }
-        function passViewPaperPara($username , $status){
+        function passViewPaperPara($username , $status, $search){
             $Paper = new Paper();
-            $resultArray = $Paper -> retrieveAuthorPaper($username, $status);
+            $resultArray = $Paper -> retrieveAuthorPaper($username, $status, $search);
             return $resultArray;
         } 
     }
