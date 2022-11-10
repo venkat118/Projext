@@ -26,7 +26,7 @@
                    Create New Account
                </p>
                    
-            <form action="../Boundary/submitPaperBoundary.php" method="POST" enctype="multipart/form-data">
+            <form action="" method="POST" enctype="multipart/form-data">
                <div class="user-box">
                    <input type="text" name="username" id="username" placeholder="Username" required>  
                </div>
