@@ -10,8 +10,26 @@
 ?>
 <html>
     <head>
+    <link rel="stylesheet" href="../Css/Main.css">
+    <link rel="stylesheet" href="../Css/viewPaper.css">
     </head>
     <body>
+    <body>
+        <div class="headerC">
+            <p>
+                The Best Paper Reviews
+            </p>
+        </div>
+    
+        <div class="parent">
+    
+            <div class="bodyC">
+               
+    
+            <p>
+                View All Papers
+            </p>
+
         <form action="../Boundary/AllPapersBoundary.php" method="GET">
             <select name="status">
                 <option value="viewAll">View All</option>
@@ -25,7 +43,7 @@
         <?php
             if($Allpapers){
         ?>
-        <table border="1px solid black">
+        <table class="styled-table">
             <th>Paper ID</th>
             <th>Paper Title</th>
             <th>Authors</th>

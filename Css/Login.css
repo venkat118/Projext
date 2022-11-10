@@ -1,10 +1,4 @@
-.LoginHead {
-    width: 100%;
-    font-size: 100px;
-    text-align: center;
-   
-    color: black;
-}
+
 
 
 .LoginBody {
@@ -23,7 +17,7 @@
 
 
 
-.LoginBody p{
+.bodyC p{
     margin: 0 0 30px;
     padding: 0;
     color: black;
@@ -32,16 +26,16 @@
 }
 
 
-.LoginBody .user-box {
+.bodyC .user-box .select {
     position: relative;
   }
 
 
- .LoginBody .user-box1 {
+ .bodyC .user-box1 {
     position: relative;
   }
 
-  .LoginBody .user-box input {
+  .bodyC .user-box input {
     width: 100%;
     padding: 10px 0;
     font-size: 30px;
@@ -53,7 +47,19 @@
     background: transparent;
   }
 
-  .LoginBody .user-box1 input {
+  .bodyC .user-box select {
+    width: 100%;
+    padding: 10px 0;
+    font-size: 30px;
+    color: black;
+    margin-bottom: 30px;
+    border: none;
+    border-bottom: 1px solid #fff;
+    outline: none;
+    background: transparent;
+  }
+
+  .bodyC .user-box1 input {
     width: 100%;
     padding: 10px 0;
     font-size: 36px;

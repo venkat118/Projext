@@ -37,18 +37,61 @@
             const paperID = urlParams.get('paperID');
             const author = urlParams.get('author');
         </script>
-    <head>
-    <body>
+
+   <link rel="stylesheet" href="../Css/Main.css">
+   <link rel="stylesheet" href="../Css/Login.css">
+
+</head>
+<body>
+
+<div class="headerC">
+   <p>
+       The Best Paper Reviews
+   </p>
+</div>
+
+<div class="parent">
+ 
+
+   <div class="bodyC">
+
+       <p>
+           Edit paper
+       </p>
         <form action="../Boundary/editPapersBoundary.php" method="POST" enctype="multipart/form-data">
-            <input type="hidden" id="paperID" name="paperID">
-            Paper Title: <input type="text" name="title" id="title"><br><br>
-            Author: <input type="text" name="author" id="author" readonly><br><br>
-            CoAuthor: <input type="text" name="coAuthor" id="coAuthor"><br><br>
-            CoAuthor 2: <input type="text" name="coAuthor2" id="coAuthor2"><br><br>
-            Upload your file here:<br><br>
-            <input type="file" name="file" id="file"><br><br>
-            <input type="submit" value="Edit your paper">
+
+            <div class="user-box">
+                <input type="text" name="title" id="title" placeholder=" Paper Title" required>  
+            </div>
+            <div class="user-box">
+                <input type="text" name="author" id="author" placeholder="Author Name" readonly>
+            </div>
+            <div class="user-box">
+               <input type="text" name="CoAuthor" id="CoAuthor" placeholder="Co Author">
+            </div>
+            <div class="user-box">
+                <input type="text" name="CoAuthor2" id="CoAuthor2" placeholder="Co Author 2">
+            </div>
+            <div class="user-box">
+                Upload your paper here:  <input type="file" name="file" placeholder="Upload you file here"><br><br>
+            </div>
+
+            <div class="user-box">
+                <input type="submit" value="Submit paper" class="button-28">
+            </div>
+
+
+           
         </form>
+
+        <div class="user-box">
+            <a href="">
+             <input type="button" value="Back" class="button-28">
+            </a>
+        </div>
+
+        </div>
+        </div>
     </body>
     <script>
         document.getElementById('title').value = paperTitle;

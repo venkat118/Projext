@@ -1,8 +1,9 @@
-.HomeHead{
+.headerC{
+  position: relative;
     width: 100%;
-    font-size: 100px;
+    height: 200px;
+    font-size: 80px;
     text-align: center;
-   
     color: black;
 }
 
@@ -14,7 +15,7 @@
   }
 
 
-.HomeBody {
+.bodyC {
     font-size: 45px;
     width: 60%;
     text-align: center;

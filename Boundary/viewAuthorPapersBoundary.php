@@ -21,10 +21,36 @@
                 return paperID;
             }
         </script>
-    </head>
+
+
+    <link rel="stylesheet" href="../Css/Main.css">
+    <link rel="stylesheet" href="../Css/viewPaper.css">
+    
+
     <?php
         if($authorPapers){
     ?>
+
+    </head>
+
+    <body>
+        <div class="headerC">
+            <p>
+                The Best Paper Reviews
+            </p>
+        </div>
+    
+        <div class="parent">
+    
+            <div class="bodyC">
+               
+    
+            <p>
+                My Papers
+            </p>
+
+
+    
     <form action="../Boundary/viewAuthorPapersBoundary.php" method="GET">
         <select name="status">
             <option value="viewAll">View All</option>
@@ -33,10 +59,13 @@
             <option value="Pending Approval"<?php if((isset($_GET['status'])) && ($_GET['status'] == "Pending Approval")){echo "selected";}?>>Pending Approval</option>
             <option value="Approved"<?php if((isset($_GET['status'])) && ($_GET['status'] == "Approved")){echo "selected";}?>>Approved</option>
         </select>
+
         <input type="text" name = "search" id = "search">
         <input type="submit" value = "Search">
     </form>
-    <table border="1px solid black">
+
+    <table class="styled-table">
+        <thead>
         <th>Paper ID</th>
         <th>Paper Title</th>
         <th>Authors</th>
@@ -45,6 +74,7 @@
         <th>Download</th>
         <th>Edit</th>
         <th>Delete</th>
+    </thead>
         <?php
             foreach($authorPapers as $Paper){
                 if(empty($Paper[3])){
@@ -64,6 +94,8 @@
             }
         ?>
     </table>
+    </div>
+    </div>
     <?php
         }
         else{

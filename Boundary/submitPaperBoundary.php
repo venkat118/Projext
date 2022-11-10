@@ -22,17 +22,58 @@
 ?>
 <html>
     <head>
+        <link rel="stylesheet" href="../Css/Main.css">
+        <link rel="stylesheet" href="../Css/Login.css">
     </head>
     <body>
-        <form action="../Boundary/submitPaperBoundary.php" method="POST" enctype="multipart/form-data">
-            Paper Title: <input type="text" name="title" id="title" required><br><br>
-            Author: <input type="text" name="authorName" id="authorName" value="<?php session_start(); echo $_SESSION["fullname"]?>" readonly><br><br>
-            Co Author: <input type="text" name="CoAuthor" id="CoAuthor"><br><br>
-            2nd Co Author: <input type="text" name="CoAuthor2" id="CoAuthor2"><br><br>
-            Upload your paper here:<br><br>
-            <input type="file" name="file"><br><br>
-            <input type="submit" value="submit paper">
+
+    <div class="headerC">
+        <p>
+            The Best Paper Reviews
+        </p>
+    </div>
+
+    <div class="parent">
+      
+
+        <div class="bodyC">
+
+            <p>
+                Submit New Paper
+            </p>
+                
+         <form action="../Boundary/submitPaperBoundary.php" method="POST" enctype="multipart/form-data">
+            <div class="user-box">
+                <input type="text" name="title" id="title" placeholder=" Paper Title" required>  
+            </div>
+            <div class="user-box">
+                <input type="text" name="authorName" id="authorName" value="<?php session_start(); echo $_SESSION["fullname"]?>" readonly>
+            </div>
+            <div class="user-box">
+               <input type="text" name="CoAuthor" id="CoAuthor" placeholder="Co Author">
+            </div>
+            <div class="user-box">
+                <input type="text" name="CoAuthor2" id="CoAuthor2" placeholder="Co Author 2">
+            </div>
+            <div class="user-box">
+                Upload your paper here:  <input type="file" name="file" placeholder="Upload you file here"><br><br>
+            </div>
+
+            <div class="user-box">
+                <input type="submit" value="Submit paper" class="button-28">
+            </div>
+
+
+           
         </form>
+
+        <div class="user-box">
+            <input type="button" value="Back" class="button-28">
+        </div>
+
+    </div>
+    </div>
+
     </body>
 </html>
 <?php

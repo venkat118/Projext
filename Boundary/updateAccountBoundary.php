@@ -36,19 +36,69 @@
     }
     else{
 ?>
-<html>
+<!DOCTYPE html>
     <head>
+        <link rel="stylesheet" href="../Css/Main.css">
+        <link rel="stylesheet" href="../Css/Login.css">
     </head>
     <body>
+
+    <div class="headerC">
+        <p>
+            The Best Paper Reviews
+        </p>
+    </div>
+
+    <div class="parent">
+       
+
+        <div class="bodyC">
+
+        <p>
+            Update particulars
+        </p>
+
+
         <form action="../Boundary/updateAccountBoundary.php" method="POST">
-            Username: <input type="text" name="username" id="username" value="<?php echo $_SESSION['username']?>" required><br><br>
-            Change Password: <input type="password" name="pass" id="pass"><br><br>
-            Confirm Password: <input type="password" name="cpass" id="cpass"><br><br>
-            Email: <input type="email" name="email" id="email"><br><br>
-            <input type="submit" value="Update Account">
+
+        <div class="user-box">
+            <input type="text" name="username" placeholder="Username" id="username" value="<?php echo $_SESSION['username']?>" required><br><br>
+        </div>
+
+        <div class="user-box">    
+            <input type="password" name="pass" placeholder="Change Password" id="pass"><br><br>
+        </div>
+        <div class="user-box">
+            <input type="password" name="cpass" placeholder="Confirm Password" id="cpass"><br><br>
+        </div>
+        <div class="user-box">
+            <input type="email" name="email" placeholder=" Email" id="email"><br><br>
+        </div>
+       
+        <div class="user-box">
+        <input type="submit" value="Update Account" class="button-28">
+        </div>
+
+        <div class="user-box">
+            <input type="button" value="Back" class="button-28">
+        </div>
+
+       
+
+        
+        
+           
+            
         </form>
+
+        </div>
+        </div>
     </body>
+
 </html>
+
+
+
 <?php
     }
 ?>
