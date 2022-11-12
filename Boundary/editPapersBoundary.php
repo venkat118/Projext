@@ -4,8 +4,8 @@
     if(!empty($_POST)){
         $paperID = $_POST['paperID'];
         $title = $_POST['title'];
-        $coAuthor = $_POST['coAuthor'];
-        $coAuthor2 = $_POST['coAuthor2'];
+        $coAuthor = $_POST['CoAuthor'];
+        $coAuthor2 = $_POST['CoAuthor2'];
         $File = $_FILES["file"];
 
         $editPaperControl = new editPaperController();
@@ -27,6 +27,7 @@
                 break;
         }
     }
+    else{
 ?>
 <html>
     <head>
@@ -59,7 +60,7 @@
            Edit paper
        </p>
         <form action="../Boundary/editPapersBoundary.php" method="POST" enctype="multipart/form-data">
-
+            <input type="hidden" name="paperID" id="paperID">
             <div class="user-box">
                 <input type="text" name="title" id="title" placeholder=" Paper Title" required>  
             </div>
@@ -99,3 +100,6 @@
         document.getElementById('paperID').value = paperID;
     </script>
 </html>
+<?php
+    }
+?>

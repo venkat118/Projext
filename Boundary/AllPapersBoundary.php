@@ -70,7 +70,12 @@
         <?php
             }
             else{
-                echo"<p>There are no available " . $_GET["status"] . " papers for viewing</p>";
+                if(!empty($_GET['status'])){
+                    echo"<p>There are no available " . $_GET["status"] . " papers for viewing</p>";
+                }
+                else{
+                    echo"<p>There are no available papers for viewing</p>";
+                }
             }
         ?>
     </body>

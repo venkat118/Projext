@@ -9,17 +9,18 @@
 
         switch($_SESSION['role']){
             case "Admin":
-                echo "<a href='../Html/AdminLogin.html'>Back to Home</a>";
+                echo "<br><a href='/Html/AdminLogin.html'>Back to Home Page</a>";
                 break;
             case "Conference Chair":
-                echo "<a href='../Html/ConferenceLogin.html'>Back to Home</a>";
+                echo "<br><a href='/Html/ConferenceLogin.html'>Back to Home Page</a>";
                 break;
             case "Author":
-                echo "<a href='../Html/AuthorLogin.html'>Back to Home</a>";
+                echo "<br><a href='/Html/AuthorLogin.html'>Back to Home Page</a>";
                 break;
             case "Reviewer":
-                echo "<a href='../Html/ReviewerLogin.html'>Back to Home</a>";
+                echo "<br><a href='/Html/ReviewerLogin.html'>Back to Home Page</a>";
                 break;
+                
         }
     }
     else{

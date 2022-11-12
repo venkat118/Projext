@@ -88,7 +88,9 @@
                 echo "<td>".$Paper[3]."</td>";
                 echo "<td>".$Paper[4]."</td>";
                 echo "<td><a href='$download'download>Download</a></td>";
-                echo "<td><a href='../Boundary/editPapersBoundary.php?paperTitle=$Paper[1]&paperID=$Paper[0]&author=$Paper[2]' id='edit'>Edit Paper</a></td>";
+                if($Paper[4] == "Bidding"){
+                    echo "<td><a href='../Boundary/editPapersBoundary.php?paperTitle=$Paper[1]&paperID=$Paper[0]&author=$Paper[2]' id='edit'>Edit Paper</a></td>";
+                }
                 echo "<td><a href='../Boundary/deletePapersBoundary.php?paperTitle=$Paper[1]&paperID=$Paper[0]'>Delete Paper</a></td>";
                 echo "</tr>";
             }
