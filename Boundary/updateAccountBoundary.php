@@ -81,14 +81,7 @@
 
         <div class="user-box">
             <input type="button" value="Back" class="button-28">
-        </div>
-
-       
-
-        
-        
-           
-            
+        </div>      
         </form>
 
         </div>
