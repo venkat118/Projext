@@ -3,8 +3,8 @@
 
     session_start();
     $fullName = $_SESSION['fullname'];
-    $doAllPapers = new viewReviewPaperController();
-    $resultArray = $doAllPapers -> passViewReviewPaperPara($fullName);
+    $viewReviewControl = new viewReviewPaperController();
+    $resultArray = $viewReviewControl -> passViewReviewPaperPara($fullName);
     if($resultArray){
 ?>
     <html>
@@ -18,19 +18,19 @@
                 <th>Status</th>
                 <th>Download</th>
                 <th>Review</th>
-                    <?php
-                    foreach($resultArray as $Paper){
-                        $download = "/Uploads/" . $Paper[4];
-                        echo "<tr>";
-                        echo "<td>$Paper[0]</td>";
-                        echo "<td>$Paper[1]</td>";
-                        echo "<td>$Paper[2]</td>";
-                        echo "<td>$Paper[3]</td>";
-                        echo "<td><a href='$download' download>Download</a></td>";
-                        echo "<td><a href='../Boundary/reviewPapersBoundary.php?paperID=$Paper[0]&paperTitle=$Paper[1]&download=$download'>Review Paper</a></td>";
-                        echo "</tr>";
-                    }
-                    ?>
+                <?php
+                foreach($resultArray as $Paper){
+                    $download = "/Uploads/" . $Paper[4];
+                    echo "<tr>";
+                    echo "<td>$Paper[0]</td>";
+                    echo "<td>$Paper[1]</td>";
+                    echo "<td>$Paper[2]</td>";
+                    echo "<td>$Paper[3]</td>";
+                    echo "<td><a href='$download' download>Download</a></td>";
+                    echo "<td><a href='../Boundary/reviewPapersBoundary.php?paperID=$Paper[0]&paperTitle=$Paper[1]&download=$download'>Review Paper</a></td>";
+                    echo "</tr>";
+                }
+                ?>
             </table>
         </body>
     </html>

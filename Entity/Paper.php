@@ -167,9 +167,20 @@
             $sql = "UPDATE paper SET Rating = '$rating', Review = '$review', Status = 'Pending Approval' WHERE PaperID = '$paperID'";
             try{
                 mysqli_query($conn, $sql);
-                return "Update is successful";
+                return "Review has been submitted successfully";
             }catch(Exception $ex){
-                return "Update is not successful";
+                return "The review process is not done and is unsuccessful";
+            }
+        }
+
+        function confirmBid($paperID , $fullname){
+            include'../dbConnect.php';
+            $sql = "UPDATE paper SET reviewedBy = '$fullname', Status = 'Reviewing' WHERE paperID = '$paperID'";
+            try{
+                mysqli_query($conn, $sql);
+                return "Bid is successful";
+            }catch(Exception $ex){
+                return "Bid is not successful";
             }
         }
 
