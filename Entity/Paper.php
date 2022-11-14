@@ -57,6 +57,24 @@
             }
         }
 
+        function retrivePaperReviewing($fullName){
+            include'../dbConnect.php';
+            $sql = "SELECT * FROM paper WHERE reviewedBy = '$fullName' AND Status = 'Reviewing'";
+            $resultArray = array();
+            try{
+                $result = mysqli_query($conn , $sql);
+                if($result){
+                    while($row = mysqli_fetch_assoc($result)){
+                        array_push($resultArray, array($row['PaperID'], $row['Title'], $row['Author'], $row['Status'], $row['FileName']));
+                    }
+                }
+                mysqli_close($conn);
+                return $resultArray;
+            }catch(Exception $ex){
+                return mysqli_error($conn);
+            }
+        }
+
         function submitAuthorPaper($title, $author, $coAuthor, $coAuthor2, $fileName){
             include'../dbConnect.php';
             $sql = "INSERT INTO paper (Title, Author, CoAuthor, CoAuthor2, Status, FileName) VALUES 
@@ -141,6 +159,17 @@
                 return "Delete is successful";
             }catch(Exception $ex){
                 return "Delete is not successful";
+            }
+        }
+
+        function reviewPaper($paperID, $rating, $review){
+            include '../dbConnect.php';
+            $sql = "UPDATE paper SET Rating = '$rating', Review = '$review', Status = 'Pending Approval' WHERE PaperID = '$paperID'";
+            try{
+                mysqli_query($conn, $sql);
+                return "Update is successful";
+            }catch(Exception $ex){
+                return "Update is not successful";
             }
         }
 
