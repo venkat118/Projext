@@ -195,5 +195,16 @@
             }
         }
 
+        function deleteReview($paperID){
+            include '../dbConnect.php';
+            $sql = "UPDATE paper SET Review = NULL, Status = 'Reviewing' WHERE PaperID = '$paperID'";
+            try{
+                mysqli_query($conn, $sql);
+                return "Successfully deleted the review";
+            }catch(Exception $ex){
+                return "Unsuccessfully deleted the review";
+            }
+        }
+
     }
 ?>
