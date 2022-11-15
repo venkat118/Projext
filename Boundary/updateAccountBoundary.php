@@ -5,9 +5,13 @@
         $password = $_POST['pass'];
         $confirmPass = $_POST['cpass'];
         $email = $_POST['email'];
+        $bidLimit = "";
+        if(!empty($_POST['bidLimit'])){
+            $bidLimit = $_POST['bidLimit'];
+        }
 
-        $updateAccountControl = new updateAccountController($username, $password, $confirmPass, $email);
-        $result = $updateAccountControl -> passUpdateAccountPara($username, $password, $confirmPass, $email);
+        $updateAccountControl = new updateAccountController();
+        $result = $updateAccountControl -> passUpdateAccountPara($username, $password, $confirmPass, $email, $bidLimit);
         switch($result){
             case 0:
                 echo "Update successful";
@@ -74,6 +78,22 @@
         <div class="user-box">
             <input type="email" name="email" placeholder=" Email" id="email"><br><br>
         </div>
+        <?php
+        if($_SESSION['role'] == 'Reviewer'){       
+        ?>
+        Set Your Bid Limit:<br>
+        <div class="user-box">
+            <select name="bidLimit">
+                <option value="1" selected>1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+            </select><br><br>
+        </div>
+        <?php
+        }
+        ?>
        
         <div class="user-box">
         <input type="submit" value="Update Account" class="button-28">

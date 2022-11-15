@@ -37,7 +37,7 @@
         </script>
     </head>
     <body>
-        <form action="../Boundary/addComments.php" method="POST">
+        <form action="../Boundary/addCommentsBoundary.php" method="POST">
             <input type="hidden" name="paperID" id="paperID">
             <input type="hidden" name="userID" id="userID">
             Write your comments here:<br><br>

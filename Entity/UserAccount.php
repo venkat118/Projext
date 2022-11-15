@@ -25,7 +25,7 @@
             }
         }
 
-        function updateAccount($userID, $username, $password, $email){
+        function updateAccount($userID, $username, $password, $email, $bidLimit){
             include '../dbConnect.php';
             $check = 0;
             if($username){
@@ -47,6 +47,14 @@
             }
             if ($email){
                 $sql = "UPDATE useraccount SET Email = '$email' WHERE userID = '$userID'";
+                try{
+                    mysqli_query($conn , $sql);
+                }catch(Exception $ex){
+                    $check = 1;
+                }
+            }
+            if($bidLimit){
+                $sql = "UPDATE useraccount SET ReviewLimit = $bidLimit WHERE userID = '$userID'";
                 try{
                     mysqli_query($conn , $sql);
                 }catch(Exception $ex){

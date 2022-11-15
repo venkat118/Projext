@@ -68,30 +68,55 @@
         <thead>
         <th>Paper ID</th>
         <th>Paper Title</th>
-        <th>Authors</th>
-        <th>Reviewed By</th>
         <th>Status</th>
-        <th>Download</th>
-        <th>Edit</th>
-        <th>Delete</th>
+        <th>Ratings</th>
+        <th>Reviewed By</th>
+        <th>Author</th>
+        <th>CoAuthor</th>
+        <th>2nd CoAuthor</th>
     </thead>
         <?php
             foreach($authorPapers as $Paper){
+                $check = false;
                 if(empty($Paper[3])){
                     $Paper[3] = "Nil";
+                }
+                if(!empty($_SESSION['fullname'])){
+                    if($_SESSION['fullname'] == $Paper[3] && $Paper[4] == "Pending Approval"){
+                        $check = True;
+                    }
                 }
                 $download = "../Uploads/" . $Paper[5];
                 echo "<tr>";
                 echo "<td>".$Paper[0]."</td>";
                 echo "<td>".$Paper[1]."</td>";
-                echo "<td>".$Paper[2]."</td>";
-                echo "<td>".$Paper[3]."</td>";
                 echo "<td>".$Paper[4]."</td>";
-                echo "<td><a href='$download'download>Download</a></td>";
-                if($Paper[4] == "Bidding"){
-                    echo "<td><a href='../Boundary/editPapersBoundary.php?paperTitle=$Paper[1]&paperID=$Paper[0]&author=$Paper[2]' id='edit'>Edit Paper</a></td>";
+                switch($Paper[6]){
+                    case 1:
+                        $rating = "&#9733;";
+                        break;
+                    case 2:
+                        $rating = "&#9733;&#9733;";
+                        break;
+                    case 3:
+                        $rating = "&#9733;&#9733;&#9733;";
+                        break;
+                    case 4:
+                        $rating =  "&#9733;&#9733;&#9733;&#9733;";
+                        break;
+                    case 5:
+                        $rating = "&#9733;&#9733;&#9733;&#9733;&#9733;";
+                        break;
                 }
-                echo "<td><a href='../Boundary/deletePapersBoundary.php?paperTitle=$Paper[1]&paperID=$Paper[0]'>Delete Paper</a></td>";
+                echo "<td>$rating</td>";
+                echo "<td>".$Paper[3]."</td>";
+                echo "<td>".$Paper[2]."</td>";
+                echo "<td>".$Paper[7]."</td>";
+                echo "<td>".$Paper[8]."</td>";
+                echo "<td><a href='$download'download>Download</a></td>";
+                if($Paper[4] == "Pending Approval"){
+                    echo "<td><a href='../Boundary/viewRatingReviewBoundary.php?paperID=$Paper[0]&paperTitle=$Paper[1]&rating=$rating&review=$Paper[9]&check=$check'>View Reviews</a></td>";
+                }
                 echo "</tr>";
             }
         ?>

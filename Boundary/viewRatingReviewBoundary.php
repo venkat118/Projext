@@ -28,7 +28,7 @@
             Review:
             <label id="review"></label><br><br>
             <label id="button"></label>
-            <a id="deleteComments">Delete Review</a>
+            <label id="hyperDelete"></label>
             <?php if(!empty($_SESSION['role'])){?>
                 <a id="addComments">Add Comments</a>
             <?php
@@ -61,6 +61,9 @@
         document.getElementById('paperRating').value = rating;
         document.getElementById('paperReview').value = review;
         document.getElementById('addComments').href = `/Boundary/addCommentsBoundary.php?paperID=${paperID}&userID=<?php echo $_SESSION['userID']?>`;
-        document.getElementById('deleteComments').href = `/Boundary/deleteReviewBoundary.php?paperID=${paperID}&paperTitle=${paperTitle}`;
+        if(check == 1){
+            document.getElementById('hyperDelete').innerHTML = "<a id='deleteComments'>Delete Review</a>";
+            document.getElementById('deleteComments').href = `/Boundary/deleteReviewBoundary.php?paperID=${paperID}&paperTitle=${paperTitle}`;
+        }
     </script>
 </html>

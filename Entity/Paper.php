@@ -47,7 +47,7 @@
                 $result = mysqli_query($conn , $sql);
                 if($result){
                     while($row = mysqli_fetch_assoc($result)){
-                        array_push($resultArray, array($row['PaperID'], $row['Title'], $row['Author'], $row['reviewedBy'], $row['Status'], $row['FileName']));
+                        array_push($resultArray, array($row['PaperID'], $row['Title'], $row['Author'], $row['reviewedBy'], $row['Status'], $row['FileName'], $row['Rating'], $row['CoAuthor'], $row['CoAuthor2'], $row['Review']));
                     }
                 }
                 mysqli_close($conn);
