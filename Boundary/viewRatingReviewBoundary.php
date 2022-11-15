@@ -59,6 +59,6 @@
         document.getElementById('title').value = paperTitle;
         document.getElementById('paperRating').value = rating;
         document.getElementById('paperReview').value = review;
-        document.getElementById('addComments').href = `/Boundary/addComments.php?paperID=${paperID}&userID=<?php echo $_SESSION['userID']?>`;
+        document.getElementById('addComments').href = `/Boundary/addCommentsBoundary.php?paperID=${paperID}&userID=<?php echo $_SESSION['userID']?>`;
     </script>
 </html>
