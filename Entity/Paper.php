@@ -11,20 +11,20 @@
 
         }
 
-        function retrievePapers($status){
+        function retrievePapers($status, $search){
             include '../dbConnect.php';
-            if($status == "viewAll"){
+            if($status == "viewAll" && empty($search)){
                 $sql = 'SELECT * FROM Paper';
             }
             else{
-                $sql = "SELECT * FROM Paper WHERE Status = '$status'";
+                $sql = "SELECT * FROM Paper WHERE Status = '$status' OR Title LIKE '%$search%'";
             }
             $resultArray = array();
             try{
                 $result = mysqli_query($conn , $sql);
                 if($result){
                     while($row = mysqli_fetch_assoc($result)){
-                        array_push($resultArray, array($row['PaperID'], $row['Title'], $row['Author'], $row['reviewedBy'], $row['Status'], $row['FileName']));
+                        array_push($resultArray, array($row['PaperID'], $row['Title'], $row['Author'], $row['reviewedBy'], $row['Status'], $row['FileName'], $row['Rating'], $row['CoAuthor'], $row['CoAuthor2'], $row['Review']));
                     }
                 }
                 mysqli_close($conn);
@@ -40,7 +40,7 @@
                 $sql = "SELECT * FROM Paper WHERE Author = (SELECT FullName FROM useraccount WHERE userName = '$username')";
             }
             else{
-                $sql = "SELECT * FROM Paper WHERE Author = (SELECT FullName FROM useraccount WHERE userName = '$username') AND (Status = '$status' OR Title LIKE '%$search')";
+                $sql = "SELECT * FROM Paper WHERE Author = (SELECT FullName FROM useraccount WHERE userName = '$username') AND (Status = '$status' OR Title LIKE '%$search%')";
             }
             $resultArray = array();
             try{
@@ -181,6 +181,17 @@
                 return "Bid is successful";
             }catch(Exception $ex){
                 return "Bid is not successful";
+            }
+        }
+
+        function editRatingReview($paperID, $rating, $review){
+            include '../dbConnect.php';
+            $sql = "UPDATE paper SET Rating = '$rating', Review = '$review' WHERE PaperID = '$paperID'";
+            try{
+                mysqli_query($conn, $sql);
+                return "Successfully edited ratings and reviews";
+            }catch(Exception $ex){
+                return "The edit process is unsuccessful";
             }
         }
 

@@ -50,7 +50,7 @@
                 <option value="4">&#9733;&#9733;&#9733;&#9733;</option>
                 <option value="5">&#9733;&#9733;&#9733;&#9733;&#9733;</option>
             </select><br><br>
-            Leave Your Review Here:<br>
+            Leave your review Here:<br>
             <textarea id="review" name="review" rows="4" cols="50" required>
             </textarea><br><br>
             <input type="submit" value="Submit your review">

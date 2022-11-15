@@ -1,10 +1,13 @@
 <?php
     session_start();
     if(!empty($_POST)){
-        include'../Controller/doConfirmBiddingController.php';
+        include '../Controller/doAddCommentsController.php';
         $paperID = $_POST['paperID'];
-        $confirmBiddingControl = new confirmBiddingController();
-        $result = $confirmBiddingControl -> passBiddingPara($paperID, $_SESSION['fullname']);
+        $userID = $_POST['userID'];
+        $comment = $_POST['comments'];
+
+        $addCommentControl = new addCommentsController();
+        $result = $addCommentControl -> passAddCommentsPara($userID, $paperID, $comment);
         echo $result;
 
         switch($_SESSION['role']){
@@ -22,28 +25,31 @@
                 break;
                 
         }
-    }
-    else{
+    }else {
 ?>
 <html>
     <head>
         <script>
             const queryString = window.location.search;
             const urlParams = new URLSearchParams(queryString);
-            const paperTitle = urlParams.get('paperTitle');
+            const userID = urlParams.get('userID');
             const paperID = urlParams.get('paperID');
         </script>
     </head>
     <body>
-        <form action="/Boundary/confirmBidBoundary.php" method="POST">
-            <input type="hidden" id="paperID" name="paperID">
-            Are you sure you would like to bid for <label name="title" id="paperTitle"></label><br><br>
-            <input type="submit" value="Confirm Bid">
+        <form action="../Boundary/addComments.php" method="POST">
+            <input type="hidden" name="paperID" id="paperID">
+            <input type="hidden" name="userID" id="userID">
+            Write your comments here:<br><br>
+            <textarea name="comments" rows="7" cols="50">
+            </textarea>
+            <br><br>
+            <input type="submit" value="Post Comment">
         </form>
     </body>
     <script>
-        document.getElementById("paperTitle").innerHTML= paperTitle;
         document.getElementById('paperID').value = paperID;
+        document.getElementById('userID').value = userID;
     </script>
 </html>
 <?php

@@ -1,12 +1,15 @@
 <?php
+    session_start();
     include'../Controller/doAllPapersController.php';
     
     $status = "viewAll";
+    $search = "";
     if(isset($_GET['status'])){
         $status = $_GET['status'];
+        $search = $_GET['search'];
     }
     $doAllPaperControl = new doAllPapersController();
-    $Allpapers = $doAllPaperControl -> passPaperPara($status);
+    $Allpapers = $doAllPaperControl -> passPaperPara($status, $search);
 ?>
 <html>
     <head>
@@ -38,7 +41,8 @@
                 <option value="Pending Approval"<?php if((isset($_GET['status'])) && ($_GET['status'] == "Pending Approval")){echo "selected";}?>>Pending Approval</option>
                 <option value="Approved"<?php if((isset($_GET['status'])) && ($_GET['status'] == "Approved")){echo "selected";}?>>Approved</option>
             </select>
-            <input type="submit" value = "Filter">
+            <input type="text" name = "search" id = "search">
+            <input type="submit" value = "Search">
         </form>
         <?php
             if($Allpapers){
@@ -46,23 +50,54 @@
         <table class="styled-table">
             <th>Paper ID</th>
             <th>Paper Title</th>
-            <th>Authors</th>
+            <th>Status</th>
+            <th>Ratings</th>
             <th>Reviewed By</th>
-            <th>Staus</th>
-            <th>Download</th>
+            <th>Author</th>
+            <th>CoAuthor</th>
+            <th>2nd CoAuthor</th>
             <?php
                 foreach($Allpapers as $Paper){
+                    $check = false;
                     if(empty($Paper[3])){
                         $Paper[3] = "Nil";
+                    }
+                    if(!empty($_SESSION['fullname'])){
+                        if($_SESSION['fullname'] == $Paper[3] && $Paper[4] == "Pending Approval"){
+                            $check = True;
+                        }
                     }
                     $download = "../Uploads/" . $Paper[5];
                     echo "<tr>";
                     echo "<td>".$Paper[0]."</td>";
                     echo "<td>".$Paper[1]."</td>";
-                    echo "<td>".$Paper[2]."</td>";
-                    echo "<td>".$Paper[3]."</td>";
                     echo "<td>".$Paper[4]."</td>";
+                    switch($Paper[6]){
+                        case 1:
+                            $rating = "&#9733;";
+                            break;
+                        case 2:
+                            $rating = "&#9733;&#9733;";
+                            break;
+                        case 3:
+                            $rating = "&#9733;&#9733;&#9733;";
+                            break;
+                        case 4:
+                            $rating =  "&#9733;&#9733;&#9733;&#9733;";
+                            break;
+                        case 5:
+                            $rating = "&#9733;&#9733;&#9733;&#9733;&#9733;";
+                            break;
+                    }
+                    echo "<td>$rating</td>";
+                    echo "<td>".$Paper[3]."</td>";
+                    echo "<td>".$Paper[2]."</td>";
+                    echo "<td>".$Paper[7]."</td>";
+                    echo "<td>".$Paper[8]."</td>";
                     echo "<td><a href='$download'download>Download</a></td>";
+                    if($Paper[4] == "Pending Approval"){
+                        echo "<td><a href='../Boundary/viewRatingReviewBoundary.php?paperID=$Paper[0]&paperTitle=$Paper[1]&rating=$rating&review=$Paper[9]&check=$check'>View Reviews</a></td>";
+                    }
                     echo "</tr>";
                 }
             ?>
