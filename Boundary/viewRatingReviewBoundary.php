@@ -7,6 +7,8 @@
 ?>
 <html>
     <head>
+        <link rel="stylesheet" href="../Css/Main.css">
+        <link rel="stylesheet" href="../Css/Login.css">
         <script>
             const queryString = window.location.search;
             const urlParams = new URLSearchParams(queryString);
@@ -18,6 +20,21 @@
         </script>
     </head>
     <body>
+        <div class="headerC">
+            <p>
+                The Best Paper Rating
+            </p>
+        </div>
+    
+        <div class="parent">
+    
+            <div class="bodyC">
+               
+    
+            <p>
+                View Comments
+            </p>
+
         <form action="/Boundary/editRatingReviewBoundary.php" method="POST">
             <input type="hidden" name="paperID" id="paperID">
             <input type="hidden" name="title" id="title">
@@ -48,6 +65,10 @@
             echo "<p>There are no comments in this seciton, start commenting now!</p>";
         }
         ?>
+
+        </div>
+        </div>
+
     </body>
     <script>
         document.getElementById('paperTitle').innerHTML = paperTitle;

@@ -29,6 +29,9 @@
 ?>
 <html>
     <head>
+        <link rel="stylesheet" href="../Css/Main.css">
+        <link rel="stylesheet" href="../Css/Login.css">
+        <link rel="stylesheet" href="../Css/viewPaper.css">
         <script>
             const queryString = window.location.search;
             const urlParams = new URLSearchParams(queryString);
@@ -38,10 +41,32 @@
         </script>
     </head>
     <body>
+        <div class="headerC">
+            <p>
+                The Best Paper Reviews
+            </p>
+        </div>
+    
+        <div class="parent">
+    
+            <div class="bodyC">
+               
+    
+            <p>
+                Submit Review
+            </p>
+
         <form action="../Boundary/reviewPapersBoundary.php" method="POST">
+
             <input type="hidden" id="paperID" name="paperID">
+
+            <div class="user-box">
+               
+            </div>
+          
             Paper Title: <label name="title" id="paperTitle"></label><br><br>
             Download the paper here: <a href="" id="downloadPaper" name="downloadPaper" download>Download</a><br><br>
+           <div class="user-box">
             Leave your rating here:
             <select name="rating">
                 <option value="1">&#9733;</option>
@@ -49,13 +74,30 @@
                 <option value="3">&#9733;&#9733;&#9733;</option>
                 <option value="4">&#9733;&#9733;&#9733;&#9733;</option>
                 <option value="5">&#9733;&#9733;&#9733;&#9733;&#9733;</option>
-            </select><br><br>
+            </select>
+            </div>
+            <div class="user-box">
+
+           
             Leave your review Here:<br>
             <textarea id="review" name="review" rows="4" cols="50" required>
-            </textarea><br><br>
-            <input type="submit" value="Submit your review">
+            </textarea>
+            </div>
+
+            <div class="user-box">
+
+            <input type="submit" value="Submit your review" class="button-28">
+
+            </div>
+
         </form>
+</div>
+</div>
+
+
     </body>
+
+
     <script>
         document.getElementById("paperTitle").innerHTML= paperTitle;
         document.getElementById('paperID').value = paperID;

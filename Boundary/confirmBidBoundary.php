@@ -27,6 +27,8 @@
 ?>
 <html>
     <head>
+    <link rel="stylesheet" href="../Css/Main.css">
+        <link rel="stylesheet" href="../Css/Login.css">
         <script>
             const queryString = window.location.search;
             const urlParams = new URLSearchParams(queryString);
@@ -35,16 +37,45 @@
         </script>
     </head>
     <body>
+
+    <div class="headerC">
+            <p>
+                The Best Paper Reviews
+            </p>
+        </div>
+    
+        <div class="parent">
+    
+            <div class="bodyC">
+               
+    
+            <p>
+               Confirm Bid
+            </p>
+
         <form action="/Boundary/confirmBidBoundary.php" method="POST">
             <input type="hidden" id="paperID" name="paperID">
-            Are you sure you would like to bid for <label name="title" id="paperTitle"></label><br><br>
-            <input type="submit" value="Confirm Bid">
+
+            <div class="user-box">
+
+           
+            Are you sure you would like to bid for <label name="title" id="paperTitle"></label>
+            
+            </div>
+            <div class="user-box">
+            <input type="submit" value="Confirm Bid" class="button-28">
+            </div>
         </form>
+
+            </div>
+        </div>
     </body>
     <script>
         document.getElementById("paperTitle").innerHTML= paperTitle;
         document.getElementById('paperID').value = paperID;
     </script>
+
+    
 </html>
 <?php
     }

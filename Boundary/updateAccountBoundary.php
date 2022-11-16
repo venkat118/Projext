@@ -8,7 +8,7 @@
         $bidLimit = "";
         if(!empty($_POST['bidLimit'])){
             $bidLimit = $_POST['bidLimit'];
-        }
+        } 
 
         $updateAccountControl = new updateAccountController();
         $result = $updateAccountControl -> passUpdateAccountPara($username, $password, $confirmPass, $email, $bidLimit);

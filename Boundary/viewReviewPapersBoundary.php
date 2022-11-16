@@ -12,14 +12,31 @@
     if($resultArray){
 ?>
     <html>
-        <head>
-        </head>
-        <body>
+    <head>
+    <link rel="stylesheet" href="../Css/Main.css">
+    <link rel="stylesheet" href="../Css/viewPaper.css">
+    </head>
+    <body>
+    <body>
+        <div class="headerC">
+            <p>
+                The Best Paper Reviews
+            </p>
+        </div>
+    
+        <div class="parent">
+    
+    <div class="bodyC">
+       
+
+    <p>
+        View Paper Reviews
+    </p>
             <form action="../Boundary/viewReviewPapersBoundary.php" method="POST">
                 <input type="text" name="search">
                 <input type="submit" value="Search">
             </form>
-            <table border= 1px solid black>
+            <table class="styled-table">
                 <th>Paper ID</th>
                 <th>Paper Title</th>
                 <th>Authors</th>
@@ -40,6 +57,10 @@
                 }
                 ?>
             </table>
+
+            </div>
+            </div>
+
         </body>
     </html>
 <?php

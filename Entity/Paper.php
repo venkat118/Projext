@@ -7,6 +7,8 @@
         private $coauthor2;
         private $reviewed_by;
 
+        private $status;
+
         public function __construct(){
 
         }

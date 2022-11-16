@@ -29,11 +29,37 @@
 
 ?>
 <html>
+    <head>
+    <link rel="stylesheet" href="../Css/Main.css">
+        <link rel="stylesheet" href="../Css/Login.css">
+    <head>
+
     <body>
+    <div class="headerC">
+            <p>
+                The Best Paper Reviews
+            </p>
+        </div>
+    
+        <div class="parent">
+    
+            <div class="bodyC">
+               
+    
+            <p>
+               Confirm Delete Review
+            </p>
+
         <form action="../Boundary/deleteReviewBoundary.php" method="POST">
-            <input type="hidden" name="paperID" value= <?php echo $paperID?>>
-            Are you sure you would like to delete your review for the paper <?php echo $paperTitle?>?<br><br>
-            <input type="submit" value="Delete Review">
+           
+        <input type="hidden" name="paperID" value= <?php echo $paperID?>>
+        <div class="user-box">
+        Are you sure you would like to delete your review for the paper <?php echo $paperTitle?>?
+        </div>
+        <div class="user-box">
+
+        <input type="submit" value="Delete Review" class="button-28">
+        </div>
         </form>
     </body>
 </html>
