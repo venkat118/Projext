@@ -29,6 +29,8 @@
 ?>
 <html>
     <head>
+        <link rel="stylesheet" href="../Css/Main.css">
+        <link rel="stylesheet" href="../Css/Login.css">
         <script>
             const queryString = window.location.search;
             const urlParams = new URLSearchParams(queryString);
@@ -37,15 +39,41 @@
         </script>
     </head>
     <body>
+
+        <div class="headerC">
+            <p>
+                The Best Paper Reviews
+            </p>
+        </div>
+    
+        <div class="parent">
+    
+            <div class="bodyC">
+               
+    
+            <p>
+                Comment On Paper
+            </p>
+
         <form action="../Boundary/addCommentsBoundary.php" method="POST">
             <input type="hidden" name="paperID" id="paperID">
             <input type="hidden" name="userID" id="userID">
-            Write your comments here:<br><br>
+            <div class="user-box">
+
+            Write your comments here: <br>
             <textarea name="comments" rows="7" cols="50">
             </textarea>
-            <br><br>
-            <input type="submit" value="Post Comment">
+
+        </div>
+            <div class="user-box">
+
+            <input type="submit" value="Post Comment" class="button-28">
+            </div>
         </form>
+
+        </div>
+        </div>
+
     </body>
     <script>
         document.getElementById('paperID').value = paperID;

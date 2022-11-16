@@ -48,7 +48,20 @@
   }
 
   .bodyC .user-box select {
-    width: 100%;
+    width: 30%;
+    padding: 10px 0;
+    font-size: 30px;
+    color: black;
+    margin-bottom: 30px;
+    border: none;
+    border-bottom: 1px solid #fff;
+    outline: none;
+    background: transparent;
+  }
+
+  .bodyC .user-box textarea {
+    background-color: gray;
+    width: 30%;
     padding: 10px 0;
     font-size: 30px;
     color: black;

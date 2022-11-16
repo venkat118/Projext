@@ -27,6 +27,8 @@
 ?>
 <html>
     <head>
+    <link rel="stylesheet" href="../Css/Main.css">
+        <link rel="stylesheet" href="../Css/Login.css">
         <script>
             const queryString = window.location.search;
             const urlParams = new URLSearchParams(queryString);
