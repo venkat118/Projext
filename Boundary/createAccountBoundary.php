@@ -1,5 +1,34 @@
 <?php
-   
+    session_start();
+    include '../Controller/doCreateAccountController.php';
+    if(!empty($_POST)){
+        $fullname = $_POST['fullname'];
+        $username = $_POST['username'];
+        $password = $_POST['password'];
+        $cpass = $_POST['cpass'];
+        $email = $_POST['email'];
+        $role = $_POST['role'];
+
+        $createAccountControl = new createAccountController();
+        $result = $createAccountControl -> passCreateAccountPara($fullname, $username, $password, $cpass,$email, $role);
+        echo $result;
+
+        switch($_SESSION['role']){
+            case "Admin":
+                echo "<br><br><a href='/Html/AdminLogin.html'>Back to Home Page</a>";
+                break;
+            case "Conference Chair":
+                echo "<br><br><a href='/Html/ConferenceLogin.html'>Back to Home Page</a>";
+                break;
+            case "Author":
+                echo "<br><br><a href='/Html/AuthorLogin.html'>Back to Home Page</a>";
+                break;
+            case "Reviewer":
+                echo "<br><br><a href='/Html/ReviewerLogin.html'>Back to Home Page</a>";
+                break;
+                
+        }
+    }else{
 ?>
 <?php
    
@@ -26,13 +55,17 @@
                    Create New Account
                </p>
                    
-            <form action="" method="POST" enctype="multipart/form-data">
-               <div class="user-box">
+            <form action="../Boundary/createAccountBoundary.php" method="POST" enctype="multipart/form-data">
+                <div class="user-box">
+                   <input type="text" name="fullname" id="fullname" placeholder="Full Name" required>  
+               </div>
+
+                <div class="user-box">
                    <input type="text" name="username" id="username" placeholder="Username" required>  
                </div>
               
                <div class="user-box">
-                  <input type="text" name="password" id="password" placeholder="Password">
+                  <input type="password" name="password" id="password" placeholder="Password">
                </div>
    
                <div class="user-box">
@@ -49,7 +82,7 @@
                        User Type
                    </p>
    
-               <select id="types" aria-placeholder="User Type">
+               <select id="types" name="role" aria-placeholder="User Type">
                    <option value="Conference Chair">
                        Conference Chair
                    </option>
@@ -84,5 +117,5 @@
        
    ?>
 <?php
-    
+    }
 ?>

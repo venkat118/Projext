@@ -12,7 +12,8 @@
             $username = $arrayLogin[0];
             $password = $arrayLogin[1];
             $role = $arrayLogin[2];
-            $sql = "SELECT userName, role, FullName, userID FROM useraccount WHERE userName = '$username' AND password = '$password' AND role = '$role'";
+            $hashPass = sha1($password);
+            $sql = "SELECT userName, role, FullName, userID FROM useraccount WHERE userName = '$username' AND password = '$hashPass' AND role = '$role'";
             try{
                 $result = mysqli_query($conn , $sql);
                 if($result){
@@ -63,6 +64,21 @@
             }
             mysqli_close($conn);
             return $check;
+        }
+
+        function createAccount($fullname, $username, $password, $email, $role){
+            include'../dbConnect.php';
+            $hashPass = sha1($password);
+            $sql = "INSERT INTO useraccount (FullName, userName, password, Email, role)
+                    VALUES('$fullname', '$username', '$hashPass', '$email', '$role')";
+            try{
+                mysqli_query($conn, $sql);
+                mysqli_close($conn);
+                return "Account has successfully created";
+            }catch(Exception $ex){
+                mysqli_close($conn);
+                return "Account creation is not succcessful";
+            }
         }
     }
 ?>
