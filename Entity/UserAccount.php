@@ -12,8 +12,8 @@
             $username = $arrayLogin[0];
             $password = $arrayLogin[1];
             $role = $arrayLogin[2];
-            $hashPass = sha1($password);
-            $sql = "SELECT userName, role, FullName, userID FROM useraccount WHERE userName = '$username' AND password = '$hashPass' AND role = '$role'";
+            $sql = "SELECT userName, role, FullName, userID FROM useraccount WHERE userName = '$username' AND password = '$password' AND role = '$role'";
+            echo $sql;
             try{
                 $result = mysqli_query($conn , $sql);
                 if($result){
@@ -68,9 +68,8 @@
 
         function createAccount($fullname, $username, $password, $email, $role){
             include'../dbConnect.php';
-            $hashPass = sha1($password);
             $sql = "INSERT INTO useraccount (FullName, userName, password, Email, role)
-                    VALUES('$fullname', '$username', '$hashPass', '$email', '$role')";
+                    VALUES('$fullname', '$username', '$password', '$email', '$role')";
             try{
                 mysqli_query($conn, $sql);
                 mysqli_close($conn);
@@ -78,6 +77,58 @@
             }catch(Exception $ex){
                 mysqli_close($conn);
                 return "Account creation is not succcessful";
+            }
+        }
+
+        function retrieveUserAccount($search){
+            include '../dbConnect.php';
+            if(empty($search)){
+                $sql = "SELECT * FROM useraccount";
+            }
+            else{
+                $sql = "SELECT * FROM useraccount WHERE userName LIKE '%$search%'";
+            }
+            $resultArray = array();
+            try{
+                $result = mysqli_query($conn, $sql);
+                if($result){
+                    while($row = mysqli_fetch_assoc($result)){
+                        array_push($resultArray, array($row['userID'], $row['FullName'], $row['userName'], $row['Email'], $row['role']));
+                    }
+                }
+                mysqli_close($conn);
+                return $resultArray;
+            }catch(Exception $ex){
+                return "Unsuccessful retrival";
+            }
+        }
+
+        function retrievePassword($userID){
+            include '../dbConnect.php';
+            $sql = "SELECT password FROM useraccount WHERE userID = '$userID'";
+            try{
+                $result = mysqli_query($conn, $sql);
+                $row = mysqli_fetch_assoc($result);
+                $password = $row['password'];
+                mysqli_close($conn);
+                return $password;
+            }catch(Exception $ex){
+                mysqli_close($conn);
+                return "Retrieval of the password failed";
+            }
+        }
+
+        function editUserAccount($userID, $username, $password, $accountType, $fullname, $email){
+            include'../dbConnect.php';
+            $sql = "UPDATE useraccount SET userName = '$username', FullName = '$fullname', role = '$accountType', Email = '$email', password = '$password'
+                    WHERE userID = '$userID'";
+            try{
+                mysqli_query($conn, $sql);
+                mysqli_close($conn);
+                return "Update account is successful";
+            }catch(Exception $ex){
+                mysqli_close($conn);
+                return "Update account has failed";
             }
         }
     }

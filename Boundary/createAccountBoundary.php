@@ -97,7 +97,7 @@
        </div>
    
                <div class="user-box">
-                   <input type="submit" value="Submit paper" class="button-28">
+                   <input type="submit" value="Create Account" class="button-28">
                </div>
    
    

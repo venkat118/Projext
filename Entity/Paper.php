@@ -170,7 +170,6 @@
 
         function reviewPaper($paperID, $rating, $review, $userID){
             include '../dbConnect.php';
-            $check = 1;
             $sqlReviewLimit = "SELECT ReviewLimit FROM useraccount WHERE userID = '$userID'";
             $sql = "UPDATE paper SET Rating = '$rating', Review = '$review', Status = 'Pending Approval' WHERE PaperID = '$paperID'";
             $sqlBid = "UPDATE useraccount SET ReviewLimit = (($sqlReviewLimit) - 1) WHERE userID = '$userID'";

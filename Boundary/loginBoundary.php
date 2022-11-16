@@ -23,10 +23,16 @@
                 default:
                     header('Location: ../Html/Login.html');
             }
-        }else{
+        }
+        else{
             header('Location: ../Html/Login.html');
         }
+        
+        
     }
+
+
+
     
     include'../Controller/doLoginController.php';
     $username = $_POST['username'];

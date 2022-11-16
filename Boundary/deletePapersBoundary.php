@@ -20,7 +20,6 @@
             case "Reviewer":
                 echo "<br><a href='/Html/ReviewerLogin.html'>Back to Home Page</a>";
                 break;
-                
         }
     }
     else{
