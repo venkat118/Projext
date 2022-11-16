@@ -5,9 +5,9 @@
         $paperID = $_POST['paperID'];
         $rating = $_POST['rating'];
         $review = $_POST['review'];
-        
+        $userID = $_SESSION['userID'];
         $reviewPaperControl = new reviewPapersController();
-        $result = $reviewPaperControl ->passViewReviewPaperPara($paperID, $rating, $review);
+        $result = $reviewPaperControl ->passViewReviewPaperPara($paperID, $rating, $review, $userID);
         echo $result;
 
         switch($_SESSION['role']){

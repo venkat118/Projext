@@ -17,7 +17,7 @@
                 $sql = 'SELECT * FROM Paper';
             }
             else{
-                $sql = "SELECT * FROM Paper WHERE Status = '$status' OR Title LIKE '%$search%'";
+                $sql = "SELECT * FROM Paper WHERE Status = '$status' AND Title LIKE '%$search%'";
             }
             $resultArray = array();
             try{
@@ -57,9 +57,13 @@
             }
         }
 
-        function retrivePaperReviewing($fullName){
+        function retrivePaperReviewing($fullName, $search){
             include'../dbConnect.php';
-            $sql = "SELECT * FROM paper WHERE reviewedBy = '$fullName' AND Status = 'Reviewing'";
+            if(empty($search)){
+                $sql = "SELECT * FROM paper WHERE reviewedBy = '$fullName' AND Status = 'Reviewing'";
+            }else{
+                $sql = "SELECT * FROM paper WHERE reviewedBy = '$fullname' AND Status = 'Reviewing' AND Title LIKE '%$search%'";
+            }
             $resultArray = array();
             try{
                 $result = mysqli_query($conn , $sql);
@@ -156,20 +160,40 @@
             $sql = "DELETE FROM paper WHERE PaperID = '$paperID'";
             try{
                 mysqli_query($conn, $sql);
+                mysqli_close($conn);
                 return "Delete is successful";
             }catch(Exception $ex){
+                mysqli_close($conn);
                 return "Delete is not successful";
             }
         }
 
-        function reviewPaper($paperID, $rating, $review){
+        function reviewPaper($paperID, $rating, $review, $userID){
             include '../dbConnect.php';
+            $check = 1;
+            $sqlReviewLimit = "SELECT ReviewLimit FROM useraccount WHERE userID = '$userID'";
             $sql = "UPDATE paper SET Rating = '$rating', Review = '$review', Status = 'Pending Approval' WHERE PaperID = '$paperID'";
+            $sqlBid = "UPDATE useraccount SET ReviewLimit = (($sqlReviewLimit) - 1) WHERE userID = '$userID'";
             try{
-                mysqli_query($conn, $sql);
-                return "Review has been submitted successfully";
+                $result = mysqli_query($conn, $sqlReviewLimit);
+                $ReviewLimit = mysqli_fetch_assoc($result);
             }catch(Exception $ex){
+                mysqli_close($conn);
                 return "The review process is not done and is unsuccessful";
+            }
+            if ($ReviewLimit['ReviewLimit'] > 0){
+                try{
+                    mysqli_query($conn, $sql);
+                    mysqli_query($conn, $sqlBid);
+                    mysqli_close($conn);
+                    return "The review process is successful";
+                }catch(Exception $ex){
+                    mysqli_close($conn);
+                    return "The review process is not done and is unsuccessful";
+                }
+            }
+            else{
+                return "You have used up your Review Limit";
             }
         }
 
@@ -178,8 +202,10 @@
             $sql = "UPDATE paper SET reviewedBy = '$fullname', Status = 'Reviewing' WHERE paperID = '$paperID'";
             try{
                 mysqli_query($conn, $sql);
+                mysqli_close($conn);
                 return "Bid is successful";
             }catch(Exception $ex){
+                mysqli_close($conn);
                 return "Bid is not successful";
             }
         }
@@ -189,8 +215,10 @@
             $sql = "UPDATE paper SET Rating = '$rating', Review = '$review' WHERE PaperID = '$paperID'";
             try{
                 mysqli_query($conn, $sql);
+                mysqli_close($conn);
                 return "Successfully edited ratings and reviews";
             }catch(Exception $ex){
+                mysqli_close($conn);
                 return "The edit process is unsuccessful";
             }
         }
@@ -200,8 +228,10 @@
             $sql = "UPDATE paper SET Review = NULL, Status = 'Reviewing' WHERE PaperID = '$paperID'";
             try{
                 mysqli_query($conn, $sql);
+                mysqli_close($conn);
                 return "Successfully deleted the review";
             }catch(Exception $ex){
+                mysqli_close($conn);
                 return "Unsuccessfully deleted the review";
             }
         }

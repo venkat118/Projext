@@ -3,14 +3,22 @@
 
     session_start();
     $fullName = $_SESSION['fullname'];
+    $search = "";
+    if(!empty($_POST)){
+        $search = $_POST['search'];
+    }
     $viewReviewControl = new viewReviewPaperController();
-    $resultArray = $viewReviewControl -> passViewReviewPaperPara($fullName);
+    $resultArray = $viewReviewControl -> passViewReviewPaperPara($fullName, $search);
     if($resultArray){
 ?>
     <html>
         <head>
         </head>
         <body>
+            <form action="../Boundary/viewReviewPapersBoundary.php" method="POST">
+                <input type="text" name="search">
+                <input type="submit" value="Search">
+            </form>
             <table border= 1px solid black>
                 <th>Paper ID</th>
                 <th>Paper Title</th>

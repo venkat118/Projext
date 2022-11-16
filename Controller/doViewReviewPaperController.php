@@ -5,9 +5,9 @@
         {
             
         }
-        function passViewReviewPaperPara($fullName){
+        function passViewReviewPaperPara($fullName , $search){
             $Paper = new Paper();
-            $resultArray = $Paper -> retrivePaperReviewing($fullName);
+            $resultArray = $Paper -> retrivePaperReviewing($fullName, $search);
             return $resultArray;
         }
 
