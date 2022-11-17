@@ -5,24 +5,22 @@
             $_SESSION["userID"] = $arrayResult['userID'];
             $_SESSION["username"] = $arrayResult['userName'];
             $_SESSION["fullname"] = $arrayResult['FullName'];
-            $_SESSION["role"] = $arrayResult['role'];
+            $_SESSION["role"] = $arrayResult['roleID'];
 
-            switch ($_SESSION["role"]){
-                case "Admin":
-                    header('Location: ../Html/AdminLogin.html');
+            switch($_SESSION['role']){
+                case 1:
+                    header('Location:/Html/AdminLogin.html');
                     break;
-                case "Author":
-                    header('Location: ../Html/AuthorLogin.html');
+                case 2:
+                    header('Location:/Html/AuthorLogin.html');
                     break;
-                case "Conference Chair":
-                    header('Location: ../Html/ConferenceLogin.html');
+                case 3:
+                    header('Location:/Html/ConferenceLogin.html');
                     break;
-                case "Reviewer":
-                    header('Location: ../Html/ReviewerLogin.html');
+                case 4:
+                    header('Location:/Html/ReviewerLogin.html');;
                     break;
-                default:
-                    header('Location: ../Html/Login.html');
-            }
+            } 
         }
         else{
             header('Location: ../Html/Login.html');
@@ -37,7 +35,7 @@
     include'../Controller/doLoginController.php';
     $username = $_POST['username'];
     $password = $_POST['password'];
-    $loginType = $_POST['loginType'];
+    $loginType = $_POST['role'];
 
     $myArray = [$username, $password, $loginType];
     $loginControl = new loginController();

@@ -12,8 +12,7 @@
             $username = $arrayLogin[0];
             $password = $arrayLogin[1];
             $role = $arrayLogin[2];
-            $sql = "SELECT userName, role, FullName, userID FROM useraccount WHERE userName = '$username' AND password = '$password' AND role = '$role'";
-            echo $sql;
+            $sql = "SELECT userName, roleID, FullName, userID FROM useraccount WHERE userName = '$username' AND password = '$password' AND roleID = '$role'";
             try{
                 $result = mysqli_query($conn , $sql);
                 if($result){
@@ -66,10 +65,10 @@
             return $check;
         }
 
-        function createAccount($fullname, $username, $password, $email, $role){
+        function createAccount($fullname, $username, $password, $email, $roleID){
             include'../dbConnect.php';
-            $sql = "INSERT INTO useraccount (FullName, userName, password, Email, role)
-                    VALUES('$fullname', '$username', '$password', '$email', '$role')";
+            $sql = "INSERT INTO useraccount (FullName, userName, password, Email, roleID)
+                    VALUES('$fullname', '$username', '$password', '$email', '$roleID')";
             try{
                 mysqli_query($conn, $sql);
                 mysqli_close($conn);

@@ -7,10 +7,10 @@
         $password = $_POST['password'];
         $cpass = $_POST['cpass'];
         $email = $_POST['email'];
-        $role = $_POST['role'];
+        $roleID = $_POST['role'];
 
         $createAccountControl = new createAccountController();
-        $result = $createAccountControl -> passCreateAccountPara($fullname, $username, $password, $cpass,$email, $role);
+        $result = $createAccountControl -> passCreateAccountPara($fullname, $username, $password, $cpass,$email, $roleID);
         echo $result;
 
         switch($_SESSION['role']){
@@ -83,13 +83,13 @@
                    </p>
    
                <select id="types" name="role" aria-placeholder="User Type">
-                   <option value="Conference Chair">
+                   <option value="3">
                        Conference Chair
                    </option>
-                   <option value="Author">
+                   <option value="2">
                        Author
                    </option>
-                   <option value="Reviewer">
+                   <option value="4">
                        Reviewer
                    </option>
                </select>

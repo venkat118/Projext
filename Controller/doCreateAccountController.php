@@ -5,10 +5,10 @@
         {
             
         }
-        function passCreateAccountPara($fullname, $username, $password, $cpass,$email, $role){
+        function passCreateAccountPara($fullname, $username, $password, $cpass,$email, $roleID){
             if($password == $cpass){
                 $user = new UserAccount();
-                $result = $user -> createAccount($fullname, $username, $password, $email, $role);
+                $result = $user -> createAccount($fullname, $username, $password, $email, $roleID);
                 return "$result";
             }else{
                 return "password and confirm password is not the same! Create your account again";
